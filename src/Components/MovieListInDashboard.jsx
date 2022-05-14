@@ -17,7 +17,7 @@ function MovieListInDashboard(props) {
               Title: movie.Title,
               Poster: movie.Poster,
               imdbID: movie.imdbID,
-              Year: movie.Yearm,
+              Year: movie.Year,
             }),
           }
         );
