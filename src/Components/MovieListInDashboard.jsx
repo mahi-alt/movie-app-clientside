@@ -6,14 +6,21 @@ import { toast, ToastContainer } from "react-toastify";
 function MovieListInDashboard(props) {
 
     const AddToPublicFav = async (movie) => {
-        await fetch('http://localhost:5000/list/AddToPublicFavList', {
-            method: 'POST',
+        await fetch('https://movieapplicationapi.herokuapp.com/list/AddToPublicFavList/',
+          {
+            method: "POST",
             headers: {
-                "Content-Type": "application/json",
-                "auth-token": localStorage.getItem('token')
+              "Content-Type": "application/json",
+              "auth-token": localStorage.getItem("token"),
             },
-            body: JSON.stringify({ Title: movie.Title, Poster: movie.Poster, imdbID: movie.imdbID, Year: movie.Yearm})
-        })
+            body: JSON.stringify({
+              Title: movie.Title,
+              Poster: movie.Poster,
+              imdbID: movie.imdbID,
+              Year: movie.Yearm,
+            }),
+          }
+        );
         toast.success('Added To Public List', {
             position: "bottom-right",
             theme: "dark",
@@ -27,14 +34,21 @@ function MovieListInDashboard(props) {
     }
     const AddToPrivateFav = async (movie) => {
         
-        await fetch('http://localhost:5000/list/AddToPvtFavList', {
-            method: 'POST',
+        await fetch('https://movieapplicationapi.herokuapp.com/list/AddToPvtFavList',
+          {
+            method: "POST",
             headers: {
-                "Content-Type": "application/json",
-                "auth-token": localStorage.getItem('token')
+              "Content-Type": "application/json",
+              "auth-token": localStorage.getItem("token"),
             },
-            body: JSON.stringify({ Title: movie.Title, Poster: movie.Poster, imdbID: movie.imdbID, Year: movie.Year})
-        })
+            body: JSON.stringify({
+              Title: movie.Title,
+              Poster: movie.Poster,
+              imdbID: movie.imdbID,
+              Year: movie.Year,
+            }),
+          }
+        );
         
         toast.success('Added To Private List', {
             position: "bottom-right",

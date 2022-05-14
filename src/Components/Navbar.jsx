@@ -9,13 +9,14 @@ function Navbar() {
     let navigate = useNavigate();
     const handlePvtFavClick = async () => {
         
-        const response = await fetch("http://localhost:5000/list/FetchFromPvtFavList", {
-            method: 'POST',
+        const response = await fetch("https://movieapplicationapi.herokuapp.com/list/FetchFromPvtFavList",
+          {
+            method: "POST",
             headers: {
-                "Content-Type": "application/json",
-                "auth-token": localStorage.getItem('token')
+              "Content-Type": "application/json",
+              "auth-token": localStorage.getItem("token"),
             },
-        }
+          }
         );
         pvtMovies = await response.json();
         navigate('/PvtFavourites')
@@ -23,15 +24,18 @@ function Navbar() {
 
     const handlePublicFavClick = async () => {
 
-        const res = await fetch('http://localhost:5000/auths/getUser', {
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json",
-                    "auth-token": localStorage.getItem('token')
-                }
-            });
+        const res = await fetch('https://movieapplicationapi.herokuapp.com/auths/getUser',
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "auth-token": localStorage.getItem("token"),
+            },
+          }
+        );
             userInfo = await res.json();
-        const url = "http://localhost:5000/list/FetchFromPublicFavList/" + userInfo._id;
+        const url = "https://movieapplicationapi.herokuapp.com/list/FetchFromPublicFavList/" +
+          userInfo._id;
         const response = await fetch(url, {
             method: 'GET',
             headers: {
@@ -51,13 +55,16 @@ function Navbar() {
 
     const handleProfile = async () => {
         try {
-            const response = await fetch('http://localhost:5000/auths/getUser', {
-                method: 'POST',
+            const response = await fetch(
+              "https://movieapplicationapi.herokuapp.com/auths/getUser",
+              {
+                method: "POST",
                 headers: {
-                    "Content-Type": "application/json",
-                    "auth-token": localStorage.getItem('token')
-                }
-            });
+                  "Content-Type": "application/json",
+                  "auth-token": localStorage.getItem("token"),
+                },
+              }
+            );
             userInfo = await response.json();
             navigate('/Profile');
         } catch (error) {
